@@ -16,7 +16,7 @@ public class OrderDAOImpl extends CrudDAOImpl<Orders,Integer> implements OrderDA
 
     @Override
     public boolean existsByCustomerId(String customerId) throws Exception {
-        return entityManager.createNativeQuery("SELECT * FROM Orders WHERE customer_id=?1").setParameter(1,customerId).getSingleResult()!=null;
+        return entityManager.createNativeQuery("SELECT * FROM Orders WHERE customer_id=?1").setParameter(1,customerId).getResultList().size()>0;
     }
 
 }

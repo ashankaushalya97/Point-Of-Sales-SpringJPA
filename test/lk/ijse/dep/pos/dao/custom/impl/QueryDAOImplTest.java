@@ -2,7 +2,6 @@ package lk.ijse.dep.pos.dao.custom.impl;
 
 import lk.ijse.dep.pos.dao.custom.QueryDAO;
 import lk.ijse.dep.pos.entity.CustomEntity;
-import lk.ijse.dep.pos.db.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.List;

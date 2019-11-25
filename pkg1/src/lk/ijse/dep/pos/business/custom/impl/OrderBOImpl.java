@@ -10,8 +10,6 @@ import lk.ijse.dep.pos.dto.OrderDTO;
 import lk.ijse.dep.pos.dto.OrderDTO2;
 import lk.ijse.dep.pos.dto.OrderDetailDTO;
 import lk.ijse.dep.pos.entity.*;
-import lk.ijse.dep.pos.db.HibernateUtil;
-import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import lk.ijse.dep.pos.db.HibernateUtil;
+import lk.ijse.dep.pos.db.JPAUtil;
 
 import java.net.URL;
 import java.util.logging.*;
@@ -16,7 +16,7 @@ public class AppInitializer extends Application {
     public static void main(String[] args) {
         launch(args);
         System.out.println("Shutting down the connection");
-        HibernateUtil.getSessionFactory().close();
+        JPAUtil.getEmf().close();
     }
 
     @Override

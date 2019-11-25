@@ -8,10 +8,7 @@ import lk.ijse.dep.pos.dao.custom.ItemDAO;
 import lk.ijse.dep.pos.dao.custom.OrderDetailDAO;
 import lk.ijse.dep.pos.db.JPAUtil;
 import lk.ijse.dep.pos.dto.ItemDTO;
-import lk.ijse.dep.pos.entity.Customer;
 import lk.ijse.dep.pos.entity.Item;
-import lk.ijse.dep.pos.db.HibernateUtil;
-import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;

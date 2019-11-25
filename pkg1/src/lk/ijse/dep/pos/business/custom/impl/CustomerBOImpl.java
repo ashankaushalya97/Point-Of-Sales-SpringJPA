@@ -9,8 +9,6 @@ import lk.ijse.dep.pos.dao.custom.OrderDAO;
 import lk.ijse.dep.pos.db.JPAUtil;
 import lk.ijse.dep.pos.dto.CustomerDTO;
 import lk.ijse.dep.pos.entity.Customer;
-import lk.ijse.dep.pos.db.HibernateUtil;
-import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
