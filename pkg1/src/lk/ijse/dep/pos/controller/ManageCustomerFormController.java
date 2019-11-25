@@ -5,8 +5,7 @@
  */
 package lk.ijse.dep.pos.controller;
 
-import lk.ijse.dep.pos.business.BOFactory;
-import lk.ijse.dep.pos.business.BOTypes;
+import lk.ijse.dep.pos.AppInitializer;
 import lk.ijse.dep.pos.business.custom.CustomerBO;
 import lk.ijse.dep.pos.business.exception.AlreadyExistsInOrderException;
 import lk.ijse.dep.pos.dto.CustomerDTO;
@@ -60,7 +59,7 @@ public class ManageCustomerFormController implements Initializable {
     @FXML
     private TableView<CustomerTM> tblCustomers;
 
-    private CustomerBO customerBO = BOFactory.getInstance().getBO(BOTypes.CUSTOMER);
+    private CustomerBO customerBO = AppInitializer.ctx.getBean(CustomerBO.class);
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

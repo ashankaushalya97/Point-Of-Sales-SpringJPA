@@ -13,21 +13,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import lk.ijse.dep.pos.business.BOFactory;
-import lk.ijse.dep.pos.business.BOTypes;
+import lk.ijse.dep.pos.AppInitializer;
+import lk.ijse.dep.pos.business.custom.CustomerBO;
 import lk.ijse.dep.pos.business.custom.OrderBO;
 import lk.ijse.dep.pos.dto.OrderDTO2;
 import lk.ijse.dep.pos.util.OrderTM;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 
 public class SearchOrdersFormController {
     public TextField txtSearch;
     public TableView<OrderTM> tblOrders;
-    OrderBO orderBO = BOFactory.getInstance().getBO(BOTypes.ORDER);
+    OrderBO orderBO = AppInitializer.ctx.getBean(OrderBO.class);
 
     public void initialize() {
         // Let's map

@@ -21,5 +21,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="hibernate" level="project" />
     <orderEntry type="module" module-name="pkg1" />
+    <orderEntry type="library" name="spring" level="project" />
   </component>
 </module>

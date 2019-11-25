@@ -5,11 +5,13 @@ import lk.ijse.dep.pos.dao.CrudUtil;
 import lk.ijse.dep.pos.dao.custom.ItemDAO;
 import lk.ijse.dep.pos.entity.Item;
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ItemDAOImpl extends CrudDAOImpl<Item,String> implements ItemDAO {
 
 

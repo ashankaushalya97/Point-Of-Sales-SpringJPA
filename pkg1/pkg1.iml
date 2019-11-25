@@ -10,5 +10,6 @@
     <orderEntry type="library" name="hibernate" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="jasperReports" level="project" />
+    <orderEntry type="library" name="spring" level="project" />
   </component>
 </module>
