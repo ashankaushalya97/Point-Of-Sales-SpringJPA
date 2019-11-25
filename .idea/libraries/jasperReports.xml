@@ -1,0 +1,30 @@
+<component name="libraryTable">
+  <library name="jasperReports">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/commons-beanutils-1.9.4-test-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/commons-beanutils-1.9.4-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-javaflow-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-functions-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/commons-beanutils-1.9.4-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/commons-beanutils-1.9.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/org.springframework.core-3.1.0.release.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-chart-customizers-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/com.lowagie.text-2.1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-chart-themes-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/commons-beanutils-1.9.4-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-metadata-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/org.springframework.beans-3.1.2.release.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-fonts-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-annotation-processors-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/commons-digester-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/jasperreports-custom-visualization-6.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/joda-time-2.10.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/commons-collections4-4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperReports/spring-asm-3.1.4.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
