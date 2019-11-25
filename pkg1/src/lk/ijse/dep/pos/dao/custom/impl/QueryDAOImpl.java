@@ -20,31 +20,29 @@ public class QueryDAOImpl implements QueryDAO {
 
     @Override
     public List<CustomEntity> getSearchInfo(String searchText) throws Exception {
-//        String search = "%"+searchText+"%";
-//        NativeQuery nativeQuery = entityManager.createNativeQuery("SELECT O.id as orderId, C.customer_id as customerId, C.name as customerName, O.date as orderDate, SUM(OD.qty*OD.unit_price) as orderTotal FROM Customer C Inner JOIN Orders O ON  C.customer_id = O.customer_id INNER JOIN OrderDetail OD on O.id = OD.order_id WHERE O.id LIKE ?1 OR C.customer_id LIKE ?2 OR C.name LIKE ?3 OR O.date LIKE ?4 GROUP BY  O.id ")
-//                .setParameter(1,search).setParameter(2,search).setParameter(3,search).setParameter(4,search);
-//        Query<CustomEntity> query = nativeQuery.
-//                setResultTransformer(Transformers.aliasToBean(CustomEntity.class));
-//        List<CustomEntity> list = query.list();
-//        System.out.println(list.toString());
-//        return list;
-        return null;
+        String search = "%"+searchText+"%";
+        NativeQuery nativeQuery = (NativeQuery) entityManager.createNativeQuery("SELECT O.id as orderId, C.customer_id as customerId, C.name as customerName, O.date as orderDate, SUM(OD.qty*OD.unit_price) as orderTotal FROM Customer C Inner JOIN Orders O ON  C.customer_id = O.customer_id INNER JOIN OrderDetail OD on O.id = OD.order_id WHERE O.id LIKE ?1 OR C.customer_id LIKE ?2 OR C.name LIKE ?3 OR O.date LIKE ?4 GROUP BY  O.id ")
+                .setParameter(1,search).setParameter(2,search).setParameter(3,search).setParameter(4,search);
+        Query<CustomEntity> query = nativeQuery.
+                setResultTransformer(Transformers.aliasToBean(CustomEntity.class));
+        List<CustomEntity> list = query.list();
+        System.out.println(list.toString());
+        return list;
     }
 
     @Override
     public List<CustomEntity> getOrdersInfo() throws Exception {
-//        NativeQuery nativeQuery = session.createNativeQuery("SELECT O.id as orderId, C.customer_id as customerId, C.name as customerName, O.date as orderDate, SUM(OD.qty * OD.unit_price) AS orderTotal  FROM Customer C INNER JOIN `Orders` O ON C.customer_id=O.customer_id INNER JOIN OrderDetail OD on O.id = OD.order_id GROUP BY O.id");
-//        Query<CustomEntity> query = nativeQuery.
-//                setResultTransformer(Transformers.aliasToBean(CustomEntity.class));
-//        List<CustomEntity> list = query.list();
-//        System.out.println(list.toString());
-//
-//        return list;
-        return null;
+        NativeQuery nativeQuery = (NativeQuery) entityManager.createNativeQuery("SELECT O.id as orderId, C.customer_id as customerId, C.name as customerName, O.date as orderDate, SUM(OD.qty * OD.unit_price) AS orderTotal  FROM Customer C INNER JOIN `Orders` O ON C.customer_id=O.customer_id INNER JOIN OrderDetail OD on O.id = OD.order_id GROUP BY O.id");
+        Query<CustomEntity> query = nativeQuery.
+                setResultTransformer(Transformers.aliasToBean(CustomEntity.class));
+        List<CustomEntity> list = query.list();
+        System.out.println(list.toString());
+
+        return list;
     }
 
     @Override
     public void setEntityManager(EntityManager entityManager) {
-
+        this.entityManager=entityManager;
     }
 }
