@@ -64,6 +64,7 @@ public class CustomerBOImpl implements CustomerBO {
 
         EntityManager em= JPAUtil.getEmf().createEntityManager();
         customerDAO.setEntityManager(em);
+        em.getTransaction().begin();
 
         List<Customer> alCustomers = customerDAO.findAll();
         List<CustomerDTO> dtos = new ArrayList<>();
@@ -80,14 +81,12 @@ public class CustomerBOImpl implements CustomerBO {
     @Override
     public String getLastCustomerId() throws Exception {
         String customerId=null;
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            customerDAO.setSession(session);
-            session.beginTransaction();
-
-            customerId = customerDAO.getLastCustomerId();
-
-            session.getTransaction().commit();
-        }
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        customerDAO.setEntityManager(em);
+        em.getTransaction().begin();
+        customerId = customerDAO.getLastCustomerId();
+        em.getTransaction().commit();
+        em.close();
         return customerId;
     }
 
@@ -95,13 +94,15 @@ public class CustomerBOImpl implements CustomerBO {
     public CustomerDTO findCustomer(String customerId) throws Exception {
 
         Customer customer;
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            customerDAO.setSession(session);
-            session.beginTransaction();
-            customer = customerDAO.find(customerId);
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        customerDAO.setEntityManager(em);
+        em.getTransaction().begin();
 
-            session.getTransaction().commit();
-        }
+        customer = customerDAO.find(customerId);
+
+        em.getTransaction().commit();
+        em.close();
+
         return new CustomerDTO(customer.getCustomerId(),
                 customer.getName(), customer.getAddress());
     }
@@ -109,18 +110,20 @@ public class CustomerBOImpl implements CustomerBO {
     @Override
     public List<String> getAllCustomerIDs() throws Exception {
         List<String> ids;
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            customerDAO.setSession(session);
-            session.beginTransaction();
 
-            List<Customer> customers = customerDAO.findAll();
-            ids = new ArrayList<>();
-            for (Customer customer : customers) {
-                ids.add(customer.getCustomerId());
-            }
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        customerDAO.setEntityManager(em);
+        em.getTransaction().begin();
 
-            session.getTransaction().commit();
+        List<Customer> customers = customerDAO.findAll();
+        ids = new ArrayList<>();
+        for (Customer customer : customers) {
+            ids.add(customer.getCustomerId());
         }
+
+        em.getTransaction().commit();
+        em.close();
+
         return ids;
     }
 }

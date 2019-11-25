@@ -6,11 +6,14 @@ import lk.ijse.dep.pos.dao.DAOFactory;
 import lk.ijse.dep.pos.dao.DAOTypes;
 import lk.ijse.dep.pos.dao.custom.ItemDAO;
 import lk.ijse.dep.pos.dao.custom.OrderDetailDAO;
+import lk.ijse.dep.pos.db.JPAUtil;
 import lk.ijse.dep.pos.dto.ItemDTO;
+import lk.ijse.dep.pos.entity.Customer;
 import lk.ijse.dep.pos.entity.Item;
 import lk.ijse.dep.pos.db.HibernateUtil;
 import org.hibernate.Session;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,48 +24,47 @@ public class ItemBOImpl implements ItemBO {
 
     @Override
     public void saveItem(ItemDTO item) throws Exception {
-
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            itemDAO.setSession(session);
-            session.beginTransaction();
-            itemDAO.save(new Item(item.getCode(),
-                    item.getDescription(), item.getUnitPrice(), item.getQtyOnHand()));
-            session.getTransaction().commit();
-        }
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        itemDAO.setEntityManager(em);
+        em.getTransaction().begin();
+        itemDAO.save(new Item(item.getCode(),
+                item.getDescription(), item.getUnitPrice(), item.getQtyOnHand()));
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void updateItem(ItemDTO item) throws Exception {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            itemDAO.setSession(session);
-            session.beginTransaction();
-            itemDAO.update(new Item(item.getCode(),
-                    item.getDescription(), item.getUnitPrice(), item.getQtyOnHand()));
-            session.getTransaction().commit();
-        }
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        itemDAO.setEntityManager(em);
+        em.getTransaction().begin();
+        itemDAO.update(new Item(item.getCode(),
+                item.getDescription(), item.getUnitPrice(), item.getQtyOnHand()));
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void deleteItem(String itemCode) throws Exception {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            itemDAO.setSession(session);
-            orderDetailDAO.setSession(session);
-            session.beginTransaction();
-            if (orderDetailDAO.existsByItemCode(itemCode)){
-                throw new AlreadyExistsInOrderException("Item already exists in an order, hence unable to delete");
-            }
-            System.out.println("Record not not exist in orderDetails");
-            itemDAO.delete(itemCode);
-
-            session.getTransaction().commit();
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        itemDAO.setEntityManager(em);
+        orderDetailDAO.setEntityManager(em);
+        em.getTransaction().begin();
+        if (orderDetailDAO.existsByItemCode(itemCode)){
+            throw new AlreadyExistsInOrderException("Item already exists in an order, hence unable to delete");
         }
+        System.out.println("Record not not exist in orderDetails");
+        itemDAO.delete(itemCode);
+
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public List<ItemDTO> findAllItems() throws Exception {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            itemDAO.setSession(session);
-            session.beginTransaction();
+            EntityManager em= JPAUtil.getEmf().createEntityManager();
+            itemDAO.setEntityManager(em);
+            em.getTransaction().begin();
             List<Item> allItems = itemDAO.findAll();
             List<ItemDTO> dtos = new ArrayList<>();
             for (Item item : allItems) {
@@ -71,21 +73,25 @@ public class ItemBOImpl implements ItemBO {
                         item.getQtyOnHand(),
                         item.getUnitPrice()));
             }
-            session.getTransaction().commit();
+
+            em.getTransaction().commit();
+            em.close();
             return dtos;
-        }
+
+
     }
 
     @Override
     public String getLastItemCode() throws Exception {
         String itemCode;
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            itemDAO.setSession(session);
-            session.beginTransaction();
-            itemCode= itemDAO.getLastItemCode();
 
-            session.getTransaction().commit();
-        }
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        itemDAO.setEntityManager(em);
+        em.getTransaction().begin();
+        itemCode= itemDAO.getLastItemCode();
+
+        em.getTransaction().commit();
+        em.close();
 
         return itemCode;
     }
@@ -93,13 +99,13 @@ public class ItemBOImpl implements ItemBO {
     @Override
     public ItemDTO findItem(String itemCode) throws Exception {
         Item item;
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            itemDAO.setSession(session);
-            session.beginTransaction();
-            item = itemDAO.find(itemCode);
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        itemDAO.setEntityManager(em);
+        em.getTransaction().begin();
+        item = itemDAO.find(itemCode);
 
-            session.getTransaction().commit();
-        }
+        em.getTransaction().commit();
+        em.close();
         return new ItemDTO(item.getCode(),
                 item.getDescription(),
                 item.getQtyOnHand(),
@@ -109,13 +115,12 @@ public class ItemBOImpl implements ItemBO {
     @Override
     public List<String> getAllItemCodes() throws Exception {
         List<Item> allItems;
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            itemDAO.setSession(session);
-            session.beginTransaction();
-            allItems = itemDAO.findAll();
-
-            session.getTransaction().commit();
-        }
+        EntityManager em= JPAUtil.getEmf().createEntityManager();
+        itemDAO.setEntityManager(em);
+        em.getTransaction().begin();
+        allItems = itemDAO.findAll();
+        em.getTransaction().commit();
+        em.close();
         List<String> codes = new ArrayList<>();
         for (Item item : allItems) {
             codes.add(item.getCode());
